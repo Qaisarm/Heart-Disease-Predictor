@@ -1,0 +1,12 @@
+name: PredictionApp
+title: PredictionApp
+username:
+account: hienthusiaists
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 537760
+bundleId: 1666128
+url: https://hienthusiaists.shinyapps.io/PredictionApp/
+when: 1540642003.76791
+asMultiple: FALSE
+asStatic: FALSE
