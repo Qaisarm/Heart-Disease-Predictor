@@ -1,0 +1,43 @@
+name: Deploy to shinyapps.io
+
+on:
+  push:
+    branches: [master]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: r-lib/actions/setup-r@v2
+        with:
+          use-public-rspm: true
+
+      - name: Install R packages
+        run: |
+          install.packages(c(
+            "rsconnect", "shiny", "shinydashboard", "shinyWidgets",
+            "tree", "ISLR", "randomForest", "e1071", "naivebayes"
+          ))
+        shell: Rscript {0}
+
+      - name: Deploy app
+        env:
+          SHINYAPPS_TOKEN: ${{ secrets.SHINYAPPS_TOKEN }}
+          SHINYAPPS_SECRET: ${{ secrets.SHINYAPPS_SECRET }}
+        run: |
+          rsconnect::setAccountInfo(
+            name   = "hienthusiaists",
+            token  = Sys.getenv("SHINYAPPS_TOKEN"),
+            secret = Sys.getenv("SHINYAPPS_SECRET")
+          )
+          rsconnect::deployApp(
+            appDir      = ".",
+            appName     = "PredictionApp",
+            account     = "hienthusiaists",
+            server      = "shinyapps.io",
+            forceUpdate = TRUE
+          )
+        shell: Rscript {0}

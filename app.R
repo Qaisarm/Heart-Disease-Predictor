@@ -33,7 +33,7 @@ ui1 <- function(){
         )
     ),
     tags$style(type="text/css", "#login {font-size:24px;   text-align: left;position:absolute;top: 40%;left: 50%;margin-top: -100px;margin-left: -150px;}"),
-    div( h1(img(src="p2.png"),"Heart Disease Predictor"))
+    div( h1(img(src="p2.png"),"Tibbna CDS"))
   
   )}
 # UI for patirnt data input and result page 
@@ -41,7 +41,7 @@ ui1 <- function(){
 ui2 <- function(){tagList(
   
   # Application title
-  titlePanel(title=div(img(src="p2.png"), "Heart Disease Predictor")),
+  titlePanel(title=div(img(src="p2.png"), "Tibbna CDS")),
   ui <- fluidPage(
     fluidRow(
       column(6,
@@ -66,7 +66,7 @@ ui2 <- function(){tagList(
                                
                         ),
                         column(6, 
-                               selectInput("sex", label= ("Enter Your Gender"), selectize = TRUE, choices = c("0", "1")),
+                               selectInput("sex", label= ("Enter Your Gender"), selectize = TRUE, choices = c("Female" = "0", "Male" = "1")),
                                selected = "1",helpText("1=male,0=female")
                         )
                       ),
@@ -74,7 +74,7 @@ ui2 <- function(){tagList(
                         
                         fluidRow(
                           column(6,
-                                 selectInput("cp",label = ("Chest Pain Type:"),selectize = TRUE, choices = c("1","2","3","4")), 
+                                 selectInput("cp",label = ("Chest Pain Type:"),selectize = TRUE, choices = c("Typical Angina" = "1", "Atypical Angina" = "2", "Non Anginal" = "3", "Asymptotic" = "4")), 
                                  helpText("1. Typical Angina   2. Atypical Angina    3.Non Anginal   4. Asymptotic")
                                  
                           ),
@@ -92,14 +92,14 @@ ui2 <- function(){tagList(
                                helpText("Range=0-700 mg/dL")
                                ),
                         column(6,
-                               selectInput("fbs", label = ("Fasting Blood Sugar"), selectize = TRUE, choices = c("0", "1")), 
+                               selectInput("fbs", label = ("Fasting Blood Sugar"), selectize = TRUE, choices = c("<120mg/dl" = "0", ">120mg/dl" = "1")), 
                                helpText(" >120mg/dl -> 1; <120mg/dl -> 0")
                         )
                       ),
                 
                       fluidRow(
                         column(6,
-                               selectInput("restecg", label =("Resting ECG result"), selectize = TRUE, choices = c("0","1","2")), 
+                               selectInput("restecg", label =("Resting ECG result"), selectize = TRUE, choices = c("Normal" = "0", "ST-T wave abnormality" = "1", "Ventricular hypertrophy" = "2")), 
                                helpText("0: normal, 1:having ST-T wave abnormality , 2: showing ventricular hypertrophy ")),
                         column(6, 
                                sliderInput("thalach", label =("Max Heart Rate Achieved"), min = 0, max = 250,value = 80)
@@ -108,7 +108,7 @@ ui2 <- function(){tagList(
                       
                       fluidRow(
                         column(6, 
-                               selectInput("exang", label =("Exercise induced angina"),  selectize = TRUE, choices = c("0", "1")), 
+                               selectInput("exang", label =("Exercise induced angina"),  selectize = TRUE, choices = c("No" = "0", "Yes" = "1")), 
                                helpText("0 -> no, 1 -> yes")),
                         column(6,
                                textInput("oldpeak", label =("ST depression induced due to exercise"),value = "0"), helpText("Range=-3-6.2"))
@@ -144,7 +144,7 @@ ui2 <- function(){tagList(
   )
 )}
 
-header <- dashboardHeader(title = "Disease Predictor",  dropdownMenu(
+header <- dashboardHeader(title = "Tibbna CDS",  dropdownMenu(
 ))
 sidebar <- dashboardSidebar(
 
