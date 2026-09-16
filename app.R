@@ -147,10 +147,7 @@ ui2 <- function(){tagList(
 
 header <- dashboardHeader(title = "Tibbna CDS",  dropdownMenu(
 ))
-sidebar <- dashboardSidebar(
-
-  
-)
+sidebar <- dashboardSidebar(disable = TRUE)
 body <- dashboardBody(
   tags$head(tags$style("#dataInfo{color: red")),
   htmlOutput("page")
@@ -221,6 +218,32 @@ server = (function(input, output,session) {
     })
     
     # Prediction Logic
+    
+    observeEvent(input$predict, {
+      pred <- as.character(predictevent())
+      if (identical(pred, "1")) {
+        showModal(modalDialog(
+          title = "Prediction Result",
+          h3("The patient has a heart disease", style = "color: #c0392b;"),
+          easyClose = TRUE,
+          footer = modalButton("Close")
+        ))
+      } else if (grepl("PREDICTION ERROR", pred)) {
+        showModal(modalDialog(
+          title = "Prediction Result",
+          p(pred, style = "color: #c0392b;"),
+          easyClose = TRUE,
+          footer = modalButton("Close")
+        ))
+      } else {
+        showModal(modalDialog(
+          title = "Prediction Result",
+          h3("The patient don't have a heart disease", style = "color: #27ae60;"),
+          easyClose = TRUE,
+          footer = modalButton("Close")
+        ))
+      }
+    })
     
     output$pred1 <- renderText({
       pred <- as.character(predictevent())
