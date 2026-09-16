@@ -224,21 +224,24 @@ server = (function(input, output,session) {
       if (identical(pred, "1")) {
         showModal(modalDialog(
           title = "Prediction Result",
-          h3("The patient has a heart disease", style = "color: #c0392b;"),
+          div(style = "background-color: #f8d7da; padding: 20px; border-radius: 6px;",
+              h3("The patient has a heart disease", style = "color: #a94442; margin: 0;")),
           easyClose = TRUE,
           footer = modalButton("Close")
         ))
       } else if (grepl("PREDICTION ERROR", pred)) {
         showModal(modalDialog(
           title = "Prediction Result",
-          p(pred, style = "color: #c0392b;"),
+          div(style = "background-color: #f8d7da; padding: 20px; border-radius: 6px;",
+              p(pred, style = "color: #a94442; margin: 0;")),
           easyClose = TRUE,
           footer = modalButton("Close")
         ))
       } else {
         showModal(modalDialog(
           title = "Prediction Result",
-          h3("The patient don't have a heart disease", style = "color: #27ae60;"),
+          div(style = "background-color: #d4edda; padding: 20px; border-radius: 6px;",
+              h3("The patient don't have a heart disease", style = "color: #155724; margin: 0;")),
           easyClose = TRUE,
           footer = modalButton("Close")
         ))
