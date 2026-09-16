@@ -6,6 +6,7 @@
 ##################################################################
 
 rm(list = ls())
+options(shiny.sanitize.errors = FALSE)
 library(shiny)
 library(shinydashboard)
 library(shinyWidgets)
@@ -211,7 +212,10 @@ server = (function(input, output,session) {
                        'exang' = as.factor(input$exang),
                        'oldpeak' = as.numeric(as.character(input$oldpeak))
       )
-      prediction <- predict(naive_model, df)
+      prediction <- tryCatch(
+        predict(naive_model, df),
+        error = function(e) paste("PREDICTION ERROR:", conditionMessage(e))
+      )
       
       prediction
     })
