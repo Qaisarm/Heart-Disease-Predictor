@@ -199,14 +199,14 @@ server = (function(input, output,session) {
     set.seed(1)
     predictevent <- eventReactive(input$predict, {
       df <- data.frame('age' = as.integer(input$age),
-                       'sex' = as.factor(input$sex),
-                       'cp' = as.factor(input$cp),
+                       'sex' = factor(input$sex, levels = c("0", "1")),
+                       'cp' = factor(input$cp, levels = c("1", "2", "3", "4")),
                        'trestbps' = as.integer(as.character(input$trestbps)),
                        'chol' = as.integer(as.character(input$chol)),
-                       'fbs' = as.factor(input$fbs),
-                       'restecg' = as.factor(input$restecg),
+                       'fbs' = factor(input$fbs, levels = c("0", "1")),
+                       'restecg' = factor(input$restecg, levels = c("0", "1", "2")),
                        'thalach' = as.integer(as.character(input$thalach)),
-                       'exang' = as.factor(input$exang),
+                       'exang' = factor(input$exang, levels = c("0", "1")),
                        'oldpeak' = as.numeric(as.character(input$oldpeak))
       )
       prediction <- tryCatch(
@@ -249,6 +249,8 @@ server = (function(input, output,session) {
       pred <- as.character(predictevent())
       if (identical(pred, "1")) {
         "The patient has a heart disease"
+      } else if (grepl("PREDICTION ERROR", pred)) {
+        pred
       } else {
         "The patient don't have a heart disease"
       }
