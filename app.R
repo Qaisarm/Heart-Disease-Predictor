@@ -219,11 +219,10 @@ server = (function(input, output,session) {
     # Prediction Logic
     
     output$pred1 <- renderText({
-      table<- table (predictevent())
-      if(as.integer(table[2]) == 1){
+      pred <- as.character(predictevent())
+      if (identical(pred, "1")) {
         "The patient has a heart disease"
-        
-      } else if (as.integer(table[1]) == 1) {
+      } else {
         "The patient don't have a heart disease"
       }
     }

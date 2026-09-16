@@ -132,13 +132,6 @@ f_measure
 f_measureaverage=mean(f_measure)
 f_measureaverage
 
-#  generate plot e.g. column 4 and 5
-
-data(datarandom) # load datarandom dataset
-pairs(datarandom[4:5], main="Heart Disease Prediciton (important factors)", 
-      pch=21, bg=c("red","green3","blue")[unclass(datarandom$class)])
-
-
 #Create model 
 naive_model<- naive_bayes(data$class ~., data = data)
 naive_model
