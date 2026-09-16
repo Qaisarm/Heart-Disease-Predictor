@@ -45,17 +45,6 @@ ui2 <- function(){tagList(
   titlePanel(title=div(img(src="p2.png"), "Tibbna CDS")),
   ui <- fluidPage(
     fluidRow(
-      column(6,
-             div(id = "name",
-                 p("Doctor Doctorson"),
-                 tags$style(type="text/css", "#name {font-size:20px;}")
-             )
-             
-      ),
-      column(6, 
-             textInput( "PPN",label =("Enter Patients Personal Number"),value = ""), helpText("YYYYMMDD-XXXX"))
-    ),
-    fluidRow(
       column(12,
              "",
              fluidRow(
@@ -281,8 +270,6 @@ server = (function(input, output,session) {
     output$exang <- renderText({paste("Exercise induced angina = ", input$exang, "    (0 = no, 1 = yes)")
     })
     output$oldpeak <- renderText({paste("ST depression induced due to exercise = ", input$oldpeak)
-    })
-    output$PPN <- renderText({paste("Patients ID = ", input$PPN)
     })
     
   
